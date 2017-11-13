@@ -64,14 +64,14 @@ int main_loop(int argc, char *argv[])
 		gethostname(host, 256);
 		WSACleanup();
 #else
-		getlogin_r(username, 64);
+		strcpy(username, getenv("USER"));
 		gethostname(host, 256);
 #endif
 
 		char **tokenizedInput = 0;
 		int inputTokenCount = 0;
 		currentInputIndex = -1;
-		printf(ANSI_COLOR_GREEN"%s@%s "ANSI_COLOR_YELLOW"%s"ANSI_COLOR_RESET"> ", username, host, cwd);
+		printf(ANSI_COLOR_GREEN"%s@%s:"ANSI_COLOR_YELLOW"%s"ANSI_COLOR_RESET"> ", username, host, cwd);
 		userinput = (char *)calloc(50, 1);
 		while (1)
 		{
@@ -89,7 +89,7 @@ int main_loop(int argc, char *argv[])
 		tokenizedInput = tokenize_input(userinput, &inputTokenCount);
 		for (int i = 0; i < inputTokenCount; i++)
 		{
-			printf("Token %d: %s\n", i, tokenizedInput[i]);
+			//printf("Token %d: %s\n", i, tokenizedInput[i]);
 		}
 		ProcessUserInput(tokenizedInput, inputTokenCount);
 		//printf("%s", userinput);
