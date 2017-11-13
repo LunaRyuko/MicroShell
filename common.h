@@ -18,13 +18,13 @@ typedef enum {
 #include <string.h>
 #include <assert.h>
 
-#ifndef WIN32
-#include <unistd.h>
-#else
+#ifdef WIN32
 #include <Windows.h>
 #include <direct.h>
 #include <winsock.h>
 #pragma comment(lib, "Ws2_32.lib")
+#else
+#include <unistd.h>
 #endif
 
 #ifdef WIN32
