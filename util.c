@@ -9,6 +9,11 @@ void append_char_to_string(char * dest, char src)
 	dest[len + 1] = '\0';
 }
 
+int set_working_directory(char *dest)
+{
+	return chdir(dest);
+}
+
 void get_working_directory(char * dest, int bufSize)
 {
 	getcwd(dest, bufSize);

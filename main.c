@@ -1,41 +1,23 @@
 #include "common.h"
+#include "cmds.h"
 
 int main_loop(int argc, char *argv[]);
-
-typedef int CmdFunc(void);
-int CMD_Exit(void);
 
 char *userinput;
 
 int currentInputIndex;
-
-typedef struct builtInCmds_s {
-	const char *cmd;
-	CmdFunc * func;
-} builtInCmds_t;
-
-static builtInCmds_t builtInCmds[] =
-{
-	{"quit", &CMD_Exit},
-	{"exit", &CMD_Exit}
-};
 
 int main(int argc, char *argv[])
 {
 	currentInputIndex = -1;
 	userinput = 0;
 
-	printf("MicroShell v0.1        \n");
-	printf("   by Maciej Ray Marcin\n");
-	printf("                       \n");
+	printf("*************************\n");
+	printf("* MicroShell v0.1       *\n");
+	printf("*  by Maciej Ray Marcin *\n");
+	printf("*************************\n");
 
 	return main_loop(argc, argv);
-}
-
-int CMD_Exit(void)
-{
-	exit(0);
-	return 0;
 }
 
 int ProcessUserInput(char ** tokenizedInput, int inputTokenCount)
@@ -44,8 +26,15 @@ int ProcessUserInput(char ** tokenizedInput, int inputTokenCount)
 	{
 		if (strcmp(tokenizedInput[0], builtInCmds[i].cmd) == 0)
 		{
-			builtInCmds[i].func();
+			return builtInCmds[i].func(tokenizedInput, inputTokenCount);
 		}
+	}
+	if(fork() == 0)
+	{
+		exit(execvp(tokenizedInput[0], tokenizedInput));
+	} else {
+		wait(NULL);
+		return 0;
 	}
 }
 
