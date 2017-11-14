@@ -8,3 +8,31 @@ void append_char_to_string(char * dest, char src)
 	dest[len] = src;
 	dest[len + 1] = '\0';
 }
+
+void get_working_directory(char * dest, int bufSize)
+{
+	getcwd(dest, bufSize);
+}
+
+void get_user_name(char * dest, int bufSize)
+{
+#ifdef WIN32
+	strncpy(dest, getenv("USERNAME"), bufSize);
+#else
+	strncpy(dest, getenv("USER"), bufSize);
+#endif
+}
+
+void get_host_name(char * dest, int bufSize)
+{
+#ifdef WIN32
+	WSADATA wsaData;
+	WSAStartup(MAKEWORD(2, 2), &wsaData);
+#endif
+
+	gethostname(dest, bufSize);
+
+#ifdef WIN32
+	WSACleanup();
+#endif
+}

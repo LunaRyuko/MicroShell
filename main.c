@@ -56,17 +56,9 @@ int main_loop(int argc, char *argv[])
 	static char host[256];
 	while (1)
 	{
-		getcwd(cwd, 1024); // get working directory
-#ifdef WIN32
-		strcpy(username, getenv("USERNAME"));
-		WSADATA wsaData;
-		WSAStartup(MAKEWORD(2, 2), &wsaData);
-		gethostname(host, 256);
-		WSACleanup();
-#else
-		strcpy(username, getenv("USER"));
-		gethostname(host, 256);
-#endif
+		get_working_directory(cwd, 1024);
+		get_user_name(username, 64);
+		get_host_name(host, 256);
 
 		char **tokenizedInput = 0;
 		int inputTokenCount = 0;

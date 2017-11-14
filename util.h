@@ -7,4 +7,10 @@
 
 void append_char_to_string(char *dest, char src);
 
+void get_working_directory(char *dest, int bufSize);
+
+void get_user_name(char *dest, int bufSize);
+
+void get_host_name(char *dest, int bufSize);
+
 #endif
