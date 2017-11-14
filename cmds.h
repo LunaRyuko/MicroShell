@@ -18,5 +18,5 @@ static builtInCmds_t builtInCmds[] =
 {
 	ADD_CMD("quit", CMD_Exit)
 	ADD_CMD("exit", CMD_Exit)
-	ADD_CMD("cd", &CMD_CD)
+	ADD_CMD("cd", CMD_CD)
 };
