@@ -5,8 +5,6 @@
 #pragma once
 #endif
 
-//extern char ** tokenArray;
-
 char ** tokenize_input(char *input, int *tokenCount);
 
 #endif

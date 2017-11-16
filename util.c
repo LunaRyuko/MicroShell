@@ -1,6 +1,7 @@
 #include "common.h"
 #include "util.h"
 
+/* appends a character to string */
 void append_char_to_string(char * dest, char src)
 {
 	int len = strlen(dest);
@@ -9,16 +10,19 @@ void append_char_to_string(char * dest, char src)
 	dest[len + 1] = '\0';
 }
 
+/* sets the current working directory */
 int set_working_directory(char *dest)
 {
 	return chdir(dest);
 }
 
+/* gets the current working directory */
 void get_working_directory(char * dest, int bufSize)
 {
 	getcwd(dest, bufSize);
 }
 
+/* gets the current user name */
 void get_user_name(char * dest, int bufSize)
 {
 #ifdef WIN32
@@ -28,6 +32,7 @@ void get_user_name(char * dest, int bufSize)
 #endif
 }
 
+/* gets the current host name */
 void get_host_name(char * dest, int bufSize)
 {
 #ifdef WIN32

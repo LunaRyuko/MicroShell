@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall
+CFLAGS=-Wall -ansi
 
 BUILD_DIR=build/
 BINARY=microshell
