@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 
 	printf("*************************\n");
 	printf("* MicroShell v0.1       *\n");
-	printf("*  by Maciej Ray Marcin *\n");
+	printf("*  by Luna Ryuko        *\n");
 	printf("*************************\n");
 
 	/* start the main loop */
